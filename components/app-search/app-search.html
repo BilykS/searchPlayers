@@ -1,0 +1,38 @@
+<form :class="[`${className}`, 'js-search-form']"
+      @submit.prevent
+>
+  <div :class="[`${className}__row`]">
+    <input
+      type="text"
+      :class="`${className}__field`"
+      name="search"
+      autocomplete="off"
+      v-model="query"
+      @focus="searchAutoCompleteInFocus"
+      @input="searchAutoComplete"
+      @keyup.38="handlerUpArrow"
+      @keyup.40="handlerUpDown"
+      @keyup.enter="viewAccount"
+    />
+    <button :class="[`${className}__button`]"
+            type="button"
+            @click.prevent="submitSearch"
+    >
+      Search
+    </button>
+  </div>
+    <div :class="`${className}__result js-search-result`"
+         v-if="isShowResult"
+    >
+    <div v-for="(player, index) in getAutoCompleteList"
+         :key="index"
+         :tabindex="index"
+         :class="[`${className}__result-item js-search-result-item`,
+         searchItemIndex === index ? 'active' : '']"
+    >
+      <nuxt-link :to="`/account/${player.spa_id}-${player.name}`"
+                 :class="`${className}__result-item-link`"
+      >{{ player.name }}</nuxt-link>
+    </div>
+  </div>
+</form>
