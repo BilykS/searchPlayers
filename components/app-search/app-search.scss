@@ -1,0 +1,34 @@
+.b-search {
+  position: relative;
+  &__row {
+    display: flex;
+    align-items: center;
+  }
+  &__field {
+    width: 100%;
+    margin-right: 10px;
+  }
+  &__result {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #7E9BA1;
+  }
+  &__result-item {
+    padding: 2px;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &.active,
+    &:hover {
+      background-color: #96adb2;
+    }
+  }
+  &__result-item-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+}
